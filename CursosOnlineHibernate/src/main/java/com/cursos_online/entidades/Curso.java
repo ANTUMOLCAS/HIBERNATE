@@ -13,6 +13,10 @@ public class Curso {
 	private int id;
 	
 	private String descripcion;
+	
+	
+
+	public Curso() {}
 
 	public Curso(String descripcion) {
 		super();
@@ -34,6 +38,12 @@ public class Curso {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", descripcion=" + descripcion + "]";
+	}
+	
 	
 	
 	
