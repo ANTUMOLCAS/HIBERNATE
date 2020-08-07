@@ -84,55 +84,53 @@ public class Main {
 	}
 	
 	static void eliminarCurso(int id) {
-		Session session = sessionFactory.openSession();
 		
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Curso curso = 
-                (Curso)session.get(Curso.class,id);
+        (Curso)session.get(Curso.class,id);
 		session.delete(curso);
-		
 		session.getTransaction().commit();
 		session.close();
 	}
 		
 	
 	static void modificaCurso (int id, String nombre) {
+		
 		Session session = sessionFactory.openSession();
-	
-		   
-		    	  session.beginTransaction();
-		         Curso curso = 
-		                    (Curso)session.get(Curso.class,id); 
-		         curso.setDescripcion(nombre);
-		         session.update(curso); 
-		     	session.getTransaction().commit();
-		     
-		         session.close(); 
+	    session.beginTransaction();
+		Curso curso = 
+		(Curso)session.get(Curso.class,id); 
+		curso.setDescripcion(nombre);
+		session.update(curso); 
+		session.getTransaction().commit();
+		session.close(); 
 		      
 		   }
 	
 	
 	
 	static void modificaEstudiante (int id, String nombre, String apellido) {
-		Session session = sessionFactory.openSession();
 		
-		   
-  	  session.beginTransaction();
+	   Session session = sessionFactory.openSession();
+	   session.beginTransaction();
        Estudiante estudiantes = 
-                  (Estudiante)session.get(Estudiante.class,id); 
+       (Estudiante)session.get(Estudiante.class,id); 
        estudiantes.setNombre(nombre);
        estudiantes.setApellido(apellido);
        session.update(estudiantes); 
-   	session.getTransaction().commit();
+   	   session.getTransaction().commit();
    
        session.close(); 
     
  }
+	
 	static void eliminarEstudiante (int id ) {
+		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		 Estudiante estudiantes = 
-                 (Estudiante)session.get(Estudiante.class,id); 
+		Estudiante estudiantes = 
+        (Estudiante)session.get(Estudiante.class,id); 
 		session.delete(estudiantes);
 		
 		session.getTransaction().commit();
@@ -140,17 +138,21 @@ public class Main {
 	}
 	
 	static List<Curso> getCursos(){
+		
 		Session session = sessionFactory.openSession();
 		List<Curso> cursos = session.createQuery("from Curso", Curso.class).list();
 		return cursos;
 	}
 	
 	static List<Estudiante> getEstudiantes(){
+		
 		Session session = sessionFactory.openSession();
 		List<Estudiante> estudiantes = session.createQuery("from Estudiante", Estudiante.class).list();
 		return estudiantes;
 	}
+	
 	static List<Estudiante> getEstudiantesPorNombre(String nombre){
+		
 		Session session = sessionFactory.openSession();
 	    Query query =  session.createQuery("from Estudiante where nombre=:nombre");
 		query.setParameter("nombre", nombre);
@@ -163,7 +165,6 @@ public class Main {
 	Session session = sessionFactory.openSession();
 	session.beginTransaction();
 	session.save(curso);
-	
 	session.getTransaction().commit();
 	session.close();
 
